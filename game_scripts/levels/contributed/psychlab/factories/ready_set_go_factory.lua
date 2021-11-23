@@ -56,7 +56,7 @@ local TIME_TO_FIXATE_CROSS = 1 -- In frames.
 local FIXATION_BREAK_THRESH = 10
 local PRE_RSG_DELAYS = {10} -- "Variable foreperiod" in paper.
 local TARGET_DISPLAY_TIME = 100 -- 0.5 s in paper.
-local RSG_INTERVALS = {200, 300} -- In ascending order.
+local RSG_INTERVALS = {10, 20, 30, 40, 50, 60, 70, 80, 90,100} -- In ascending order.
 local PROBE_INTERVALS = {25, 375} -- In ascending order.
 local PROBE_PROBABILITY = 0.08
 local RSG_FLASH_DURATION = 10
@@ -72,7 +72,7 @@ local TRIALS_PER_EPISODE_CAP = 50
 local FIXATION_HOLD_RULE = false
 local FIXATION_HOLD_P = 0.15
 -- staircase
-local INTERVAL_TOLERANCE_FACTORS = {2.5, 1.5, 1.0}
+local INTERVAL_TOLERANCE_FACTORS = {2.5, 1.5, 0.0}
 local N_TO_PROMOTE = 2
 -- target aesthetics
 local N_POSITIONS = 4
