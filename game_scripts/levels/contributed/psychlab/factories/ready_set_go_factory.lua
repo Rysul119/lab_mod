@@ -288,7 +288,7 @@ function factory.createLevelApi(kwargs)
     self:log("set")
     print('set')
     local pos = self.targetPositions[idx]
-    print('go position '.. tostring(pos[1]).. ','..tostring(pos[2]))
+    print('set position '.. tostring(pos[1]).. ','..tostring(pos[2]))
     -- Add "set" widget.
     local set = tensor.ByteTensor(self.screenSize.height * kwargs.targetSize,
     self.screenSize.width * kwargs.targetSize, 3):fill(kwargs.setColor)
@@ -335,7 +335,7 @@ function factory.createLevelApi(kwargs)
     self.pac:removeWidget('go')
     self:log('trial_end')
     print('trial_end')
-    print('Steps taken in the trial '..tostring(self.currentTrial))
+    print('Steps taken in the trial '..tostring(self.currentTrial.stepCount))
     self._stepsSinceInteraction = 0
     self._fixationRequired = false
     self._trialBegan = false
