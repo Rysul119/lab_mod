@@ -213,7 +213,7 @@ function factory.createLevelApi(kwargs)
     -- Determine "go" widget position, which will determine all others.
     local idx = 3
     local go_pos = self.targetPositions[idx]
-    print('go position '.. tostring(go_pos[1])..tostring(go_pos[2]))
+    print('go position '.. tostring(go_pos[1]).. ','..tostring(go_pos[2]))
     -- Add "go" widget.
     local go = tensor.ByteTensor(self.screenSize.height * kwargs.targetSize,
         self.screenSize.width * kwargs.targetSize, 3):fill(kwargs.goColor)
@@ -251,7 +251,7 @@ function factory.createLevelApi(kwargs)
     self:log("ready")
     print('ready')
     local ready_pos = self.targetPositions[idx]
-    print('ready position '.. tostring(ready_pos[1])..tostring(ready_pos[2]))
+    print('ready position '.. tostring(ready_pos[1]).. ','..tostring(ready_pos[2]))
     -- Add "ready" widget.
     local ready = tensor.ByteTensor(self.screenSize.height * kwargs.targetSize,
     self.screenSize.width * kwargs.targetSize, 3):fill(kwargs.readyColor)
@@ -288,7 +288,7 @@ function factory.createLevelApi(kwargs)
     self:log("set")
     print('set')
     local pos = self.targetPositions[idx]
-    print('go position '.. tostring(pos[1])..tostring(pos[2]))
+    print('go position '.. tostring(pos[1]).. ','..tostring(pos[2]))
     -- Add "set" widget.
     local set = tensor.ByteTensor(self.screenSize.height * kwargs.targetSize,
     self.screenSize.width * kwargs.targetSize, 3):fill(kwargs.setColor)
