@@ -206,7 +206,8 @@ function factory.createLevelApi(kwargs)
 
     self:log('preready')
     self:log('trial_duration_idx_' .. tostring(intervalIdx - 1))
-
+    print('preready')
+    print('trial_duration_idx_' .. tostring(intervalIdx - 1))
     -- Determine "go" widget position, which will determine all others.
     local idx = 3
     local go_pos = self.targetPositions[idx]
@@ -246,7 +247,7 @@ function factory.createLevelApi(kwargs)
 
   function env:readyPhase(idx, interval)
     self:log("ready")
-
+    print('ready')
     local ready_pos = self.targetPositions[idx]
 
     -- Add "ready" widget.
@@ -283,6 +284,7 @@ function factory.createLevelApi(kwargs)
 
   function env:setPhase(idx, interval)
     self:log("set")
+    print('set')
     local pos = self.targetPositions[idx]
 
     -- Add "set" widget.
@@ -323,13 +325,14 @@ function factory.createLevelApi(kwargs)
     self.currentTrial.outcome = -1
     self.currentTrial.interval = elapsed
     self:log('timeout')
+    print('timeout')
     self:finishTrial(kwargs.intertrialInterval)
   end
 
   function env:finishTrial(delay)
     self.pac:removeWidget('go')
     self:log('trial_end')
-
+    print('trial_end')
     self._stepsSinceInteraction = 0
     self._fixationRequired = false
     self._trialBegan = false
@@ -343,6 +346,7 @@ function factory.createLevelApi(kwargs)
     if (self.currentTrial.isProbe == false) and
         (self.levelNCorrect[ii] >= kwargs.nToPromote) then
       log.info('Promoting...')
+      print('Promoting...')
       self.intervalToleranceIdx[ii] = self.intervalToleranceIdx[ii] + 1
       if self.intervalToleranceIdx[ii] > #kwargs.intervalToleranceFactors then
         self.intervalToleranceIdx[ii] = #kwargs.intervalToleranceFactors
@@ -410,9 +414,11 @@ function factory.createLevelApi(kwargs)
 
   function env:goCallback(name, mousePos, hoverTime, userData)
     self:log('response_made')
+    print('response_made')
     if self.goTimeSteps == -1 then
       self.currentTrial.outcome = -1
       log.info('early selection')
+      print('early selection')
     else
       local elapsed = self.pac:elapsedSteps() - self.goTimeSteps
       local dif = elapsed - self.currentTrial.interval
@@ -441,11 +447,14 @@ function factory.createLevelApi(kwargs)
           self.levelNCorrect[ii] = self.levelNCorrect[ii] + 1
         end
         log.info('+1 reward')
+        print('+1 reward')
         self:log('reward')
+        
       else
         self.currentTrial.outcome = 0
         self.pac:addReward(kwargs.incorrectReward)
         log.info('no reward')
+        print('no reward')
         self:log('error')
       end
     end
