@@ -335,6 +335,7 @@ function factory.createLevelApi(kwargs)
     self.pac:removeWidget('go')
     self:log('trial_end')
     print('trial_end')
+    print('Steps taken in the trial '....tostring(self.currentTrial))
     self._stepsSinceInteraction = 0
     self._fixationRequired = false
     self._trialBegan = false
@@ -411,6 +412,9 @@ function factory.createLevelApi(kwargs)
     for playerId, inv in pairs(custom_observations.playerInventory) do
       local v, h, _ = unpack(inv:eyeAngles())
       self:logEyes(v, h)
+      print('eyes at ', string.format(
+        'block_%d_episode_%d_trial_%d_%f-%f',
+        self.blockId, self.episodeId, self.trialId, v, h))
     end
   end
 
