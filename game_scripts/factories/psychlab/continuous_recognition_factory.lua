@@ -226,6 +226,7 @@ function factory.createLevelApi(kwargs)
   function env:fixationCallback(name, mousePos, hoverTime, userData)
     if hoverTime == kwargs.timeToFixateCross then
       self.pac:addReward(kwargs.fixationReward)
+      print('Obtained fixation reward')
       self.pac:removeWidget('fixation')
       self.pac:removeWidget('center_of_fixation')
 
@@ -240,11 +241,13 @@ function factory.createLevelApi(kwargs)
   end
 
   function env:onHoverEnd(name, mousePos, hoverTime, userData)
+    print('Reward added '.. tostring(self._rewardToDeliver))
     self.pac:addReward(self._rewardToDeliver)
     self:finishTrial(kwargs.fastInterTrialInterval)
   end
 
   function env:correctResponseCallback(name, mousePos, hoverTime, userData)
+    print('Correct responsecallback happened')
     self.currentTrial.response = name
     self.currentTrial.correct = 1
 
@@ -253,6 +256,7 @@ function factory.createLevelApi(kwargs)
   end
 
   function env:incorrectResponseCallback(name, mousePos, hoverTime, userData)
+    print('Incorrect responsecallback happened')
     self.currentTrial.response = name
     self.currentTrial.correct = 0
 
