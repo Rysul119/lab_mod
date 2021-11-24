@@ -163,7 +163,7 @@ function factory.createLevelApi(kwargs)
     self.targetPositions[1] = {kwargs.center[1] - 1.5 * kwargs.targetSize, ypos}
     self.targetPositions[2] = {kwargs.center[1] - 0.5 * kwargs.targetSize, ypos}
     self.targetPositions[3] = {kwargs.center[1] + 0.5 * kwargs.targetSize, ypos}
-    print("init target positions ", self.targetPositions)
+    -- print("init target positions ", self.targetPositions)
     local maxInterval = kwargs.rsgIntervals[#kwargs.rsgIntervals]
     local maxProbe = kwargs.probeIntervals[#kwargs.probeIntervals]
     local maxDuration = math.max(maxInterval, maxProbe)
@@ -193,12 +193,14 @@ function factory.createLevelApi(kwargs)
     local interval = nil
     local intervalIdx = nil
     if r < kwargs.probeProbability then
+      print('satisfied probeprobability')
       interval, intervalIdx = psychlab_helpers.randomFrom(kwargs.probeIntervals)
       self.currentTrial.interval = interval
       self.currentTrial.intervalIdx = intervalIdx
       self.currentTrial.isProbe = true
     else
       interval, intervalIdx = psychlab_helpers.randomFrom(kwargs.rsgIntervals)
+      print('did not satisfy probeprobability and sampled interval ', .. tostring(interval))
       self.currentTrial.interval = interval
       self.currentTrial.intervalIdx = intervalIdx
       self.currentTrial.isProbe = false
@@ -211,7 +213,7 @@ function factory.createLevelApi(kwargs)
     -- Determine "go" widget position, which will determine all others.
     local idx = 3
     local go_pos = self.targetPositions[idx]
-
+    print('go position '.. tostring(go_pos))
     -- Add "go" widget.
     local go = tensor.ByteTensor(self.screenSize.height * kwargs.targetSize,
         self.screenSize.width * kwargs.targetSize, 3):fill(kwargs.goColor)
@@ -249,7 +251,7 @@ function factory.createLevelApi(kwargs)
     self:log("ready")
     print('ready')
     local ready_pos = self.targetPositions[idx]
-
+    print('ready position '.. tostring(ready_pos))
     -- Add "ready" widget.
     local ready = tensor.ByteTensor(self.screenSize.height * kwargs.targetSize,
     self.screenSize.width * kwargs.targetSize, 3):fill(kwargs.readyColor)
@@ -286,7 +288,7 @@ function factory.createLevelApi(kwargs)
     self:log("set")
     print('set')
     local pos = self.targetPositions[idx]
-
+    print('go position '.. tostring(pos))
     -- Add "set" widget.
     local set = tensor.ByteTensor(self.screenSize.height * kwargs.targetSize,
     self.screenSize.width * kwargs.targetSize, 3):fill(kwargs.setColor)
@@ -436,6 +438,7 @@ function factory.createLevelApi(kwargs)
       end
 
       self.currentTrial.produced = elapsed
+      print('production time '.. tostring(self.currentTrial.produced))
       self.currentTrial.temporal_difference = dif
       self.currentTrial.tolerance = tolerance
 
