@@ -200,7 +200,7 @@ function factory.createLevelApi(kwargs)
       self.currentTrial.isProbe = true
     else
       interval, intervalIdx = psychlab_helpers.randomFrom(kwargs.rsgIntervals)
-      print('did not satisfy probeprobability and sampled interval ', .. tostring(interval))
+      print('did not satisfy probeprobability and sampled interval ' .. tostring(interval))
       self.currentTrial.interval = interval
       self.currentTrial.intervalIdx = intervalIdx
       self.currentTrial.isProbe = false
