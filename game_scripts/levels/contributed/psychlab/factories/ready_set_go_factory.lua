@@ -335,7 +335,7 @@ function factory.createLevelApi(kwargs)
     self.pac:removeWidget('go')
     self:log('trial_end')
     print('trial_end')
-    print('Steps taken in the trial '....tostring(self.currentTrial))
+    print('Steps taken in the trial '..tostring(self.currentTrial))
     self._stepsSinceInteraction = 0
     self._fixationRequired = false
     self._trialBegan = false
