@@ -163,7 +163,7 @@ function factory.createLevelApi(kwargs)
     self.targetPositions[1] = {kwargs.center[1] - 1.5 * kwargs.targetSize, ypos}
     self.targetPositions[2] = {kwargs.center[1] - 0.5 * kwargs.targetSize, ypos}
     self.targetPositions[3] = {kwargs.center[1] + 0.5 * kwargs.targetSize, ypos}
-
+    print("init target positions ", self.targetPositions)
     local maxInterval = kwargs.rsgIntervals[#kwargs.rsgIntervals]
     local maxProbe = kwargs.probeIntervals[#kwargs.probeIntervals]
     local maxDuration = math.max(maxInterval, maxProbe)
