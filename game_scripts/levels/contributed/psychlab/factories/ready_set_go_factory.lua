@@ -328,6 +328,7 @@ function factory.createLevelApi(kwargs)
     self.currentTrial.interval = elapsed
     self:log('timeout')
     print('timeout')
+    print('Timeout happened at interval '..tostring(self.currentTrial.interval))
     self:finishTrial(kwargs.intertrialInterval)
   end
 
