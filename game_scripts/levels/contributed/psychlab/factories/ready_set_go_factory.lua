@@ -330,10 +330,11 @@ function factory.createLevelApi(kwargs)
     print('timeout')
     print('Timeout happened at interval '..tostring(self.currentTrial.interval))
     for playerId, inv in pairs(custom_observations.playerInventory) do
-      local v, h, _ = unpack(inv:eyeAngles())
+      -- checks player's eye position in world units
+      local xcor, ycor, zcor = unpack(inv:eyePos())
       self:logEyes(v, h)
       -- print('eyes at ', string.format('block_%d_episode_%d_trial_%d_%f-%f', self.blockId, self.episodeId, self.trialId, v, h))
-      print('At timeout eyes at '.. tostring(v).. ','..tostring(h))
+      print('At timeout eyes at '.. tostring(xcor).. ','..tostring(ycor).. ','..tostring(zcor))
     end
     self:finishTrial(kwargs.intertrialInterval)
   end
