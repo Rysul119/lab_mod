@@ -193,14 +193,14 @@ function factory.createLevelApi(kwargs)
     local interval = nil
     local intervalIdx = nil
     if r < kwargs.probeProbability then
-      print('satisfied probeprobability')
       interval, intervalIdx = psychlab_helpers.randomFrom(kwargs.probeIntervals)
+      print('Satisfied probeprobability and sampled interval ' .. tostring(interval))
       self.currentTrial.interval = interval
       self.currentTrial.intervalIdx = intervalIdx
       self.currentTrial.isProbe = true
     else
       interval, intervalIdx = psychlab_helpers.randomFrom(kwargs.rsgIntervals)
-      print('did not satisfy probeprobability and sampled interval ' .. tostring(interval))
+      print('Did not satisfy probeprobability and sampled interval ' .. tostring(interval))
       self.currentTrial.interval = interval
       self.currentTrial.intervalIdx = intervalIdx
       self.currentTrial.isProbe = false
@@ -208,12 +208,12 @@ function factory.createLevelApi(kwargs)
 
     self:log('preready')
     self:log('trial_duration_idx_' .. tostring(intervalIdx - 1))
-    print('preready')
-    print('trial_duration_idx_' .. tostring(intervalIdx - 1))
+    -- print('preready')
+    -- print('trial_duration_idx_' .. tostring(intervalIdx - 1))
     -- Determine "go" widget position, which will determine all others.
     local idx = 3
     local go_pos = self.targetPositions[idx]
-    print('go position '.. tostring(go_pos[1]).. ','..tostring(go_pos[2]))
+    -- print('go position '.. tostring(go_pos[1]).. ','..tostring(go_pos[2]))
     -- Add "go" widget.
     local go = tensor.ByteTensor(self.screenSize.height * kwargs.targetSize,
         self.screenSize.width * kwargs.targetSize, 3):fill(kwargs.goColor)
@@ -249,9 +249,9 @@ function factory.createLevelApi(kwargs)
 
   function env:readyPhase(idx, interval)
     self:log("ready")
-    print('ready')
+    -- print('ready')
     local ready_pos = self.targetPositions[idx]
-    print('ready position '.. tostring(ready_pos[1]).. ','..tostring(ready_pos[2]))
+    -- print('ready position '.. tostring(ready_pos[1]).. ','..tostring(ready_pos[2]))
     -- Add "ready" widget.
     local ready = tensor.ByteTensor(self.screenSize.height * kwargs.targetSize,
     self.screenSize.width * kwargs.targetSize, 3):fill(kwargs.readyColor)
@@ -286,9 +286,9 @@ function factory.createLevelApi(kwargs)
 
   function env:setPhase(idx, interval)
     self:log("set")
-    print('set')
+    -- print('set')
     local pos = self.targetPositions[idx]
-    print('set position '.. tostring(pos[1]).. ','..tostring(pos[2]))
+    --print('set position '.. tostring(pos[1]).. ','..tostring(pos[2]))
     -- Add "set" widget.
     local set = tensor.ByteTensor(self.screenSize.height * kwargs.targetSize,
     self.screenSize.width * kwargs.targetSize, 3):fill(kwargs.setColor)
@@ -329,12 +329,16 @@ function factory.createLevelApi(kwargs)
     self:log('timeout')
     print('timeout')
     print('Timeout happened at interval '..tostring(self.currentTrial.interval))
+    -- thinking about adding a negative reward if there is a timeout
+    -- self.pac:addReward(-1)
     for playerId, inv in pairs(custom_observations.playerInventory) do
       -- checks player's eye position in world units
-      local xcor, ycor, zcor = unpack(inv:eyePos())
+      -- local xcor, ycor, zcor = unpack(inv:eyePos())
+      -- local v, h, _ = unpack(inv:eyeAngles())
       -- self:logEyes(v, h)
       -- print('eyes at ', string.format('block_%d_episode_%d_trial_%d_%f-%f', self.blockId, self.episodeId, self.trialId, v, h))
-      print('At timeout eyes at '.. tostring(xcor).. ','..tostring(ycor).. ','..tostring(zcor))
+      -- print('At timeout eyes at '.. tostring(xcor).. ','..tostring(ycor).. ','..tostring(zcor))
+      -- print('At timeout eyes at '.. tostring(v).. ','..tostring(h))
     end
     self:finishTrial(kwargs.intertrialInterval)
   end
@@ -342,8 +346,8 @@ function factory.createLevelApi(kwargs)
   function env:finishTrial(delay)
     self.pac:removeWidget('go')
     self:log('trial_end')
-    print('trial_end')
-    print('Steps taken in the trial '..tostring(self.currentTrial.stepCount))
+    -- print('trial_end')
+    print('trial_ending. Steps taken in the trial '..tostring(self.currentTrial.stepCount))
     self._stepsSinceInteraction = 0
     self._fixationRequired = false
     self._trialBegan = false
