@@ -327,7 +327,7 @@ function factory.createLevelApi(kwargs)
     self.currentTrial.outcome = -1
     self.currentTrial.interval = elapsed
     self:log('timeout')
-    print('timeout')
+    -- print('timeout')
     print('Timeout happened at interval '..tostring(self.currentTrial.interval))
     -- thinking about adding a negative reward if there is a timeout
     -- self.pac:addReward(-1)
