@@ -56,7 +56,8 @@ local TIME_TO_FIXATE_CROSS = 1 -- In frames.
 local FIXATION_BREAK_THRESH = 10
 local PRE_RSG_DELAYS = {10} -- "Variable foreperiod" in paper.
 local TARGET_DISPLAY_TIME = 100 -- 0.5 s in paper.
-local RSG_INTERVALS = {10, 20, 30, 40, 50, 60, 70, 80, 90, 100} -- In ascending order.
+-- local RSG_INTERVALS = {10, 20, 30, 40, 50, 60, 70, 80, 90, 100} -- In ascending order.
+local RSG_INTERVALS = {5} -- In ascending order.
 local PROBE_INTERVALS = {25, 375} -- In ascending order.
 local PROBE_PROBABILITY = 0.08
 local RSG_FLASH_DURATION = 10
@@ -77,7 +78,7 @@ local N_TO_PROMOTE = 2
 -- target aesthetics
 local N_POSITIONS = 4
 local TARGET_DISTANCE = 0.4
-local TARGET_SIZE = 0.1
+local TARGET_SIZE = 0.5
 local READY_COLOR = {255, 10, 10}
 local SET_COLOR = {255, 255, 10}
 local GO_COLOR = {10, 200, 10}
@@ -331,7 +332,7 @@ function factory.createLevelApi(kwargs)
     print('Timeout happened at interval '..tostring(self.currentTrial.interval))
     -- thinking about adding a negative reward if there is a timeout
     -- self.pac:addReward(-1)
-    for playerId, inv in pairs(custom_observations.playerInventory) do
+    -- for playerId, inv in pairs(custom_observations.playerInventory) do
       -- checks player's eye position in world units
       -- local xcor, ycor, zcor = unpack(inv:eyePos())
       -- local v, h, _ = unpack(inv:eyeAngles())
@@ -339,7 +340,7 @@ function factory.createLevelApi(kwargs)
       -- print('eyes at ', string.format('block_%d_episode_%d_trial_%d_%f-%f', self.blockId, self.episodeId, self.trialId, v, h))
       -- print('At timeout eyes at '.. tostring(xcor).. ','..tostring(ycor).. ','..tostring(zcor))
       -- print('At timeout eyes at '.. tostring(v).. ','..tostring(h))
-    end
+    -- end
     self:finishTrial(kwargs.intertrialInterval)
   end
 
