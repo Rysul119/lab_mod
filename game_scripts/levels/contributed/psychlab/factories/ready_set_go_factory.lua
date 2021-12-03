@@ -78,7 +78,7 @@ local N_TO_PROMOTE = 2
 -- target aesthetics
 local N_POSITIONS = 4
 local TARGET_DISTANCE = 0.4
-local TARGET_SIZE = 0.4
+local TARGET_SIZE = 0.1
 local READY_COLOR = {255, 10, 10}
 local SET_COLOR = {255, 255, 10}
 local GO_COLOR = {10, 200, 10}
