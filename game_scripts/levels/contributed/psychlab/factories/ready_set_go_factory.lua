@@ -73,7 +73,8 @@ local TRIALS_PER_EPISODE_CAP = 50
 local FIXATION_HOLD_RULE = false
 local FIXATION_HOLD_P = 0.15
 -- staircase
-local INTERVAL_TOLERANCE_FACTORS = {2.5, 1.5, 0.0}
+-- local INTERVAL_TOLERANCE_FACTORS = {2.5, 1.5, 0.0}
+local INTERVAL_TOLERANCE_FACTORS = {100, 50, 0.0}
 local N_TO_PROMOTE = 2
 -- target aesthetics
 local N_POSITIONS = 4
