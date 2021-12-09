@@ -78,7 +78,7 @@ local N_TO_PROMOTE = 2
 -- target aesthetics
 local N_POSITIONS = 4
 local TARGET_DISTANCE = 0.4
-local TARGET_SIZE = 0.2
+local TARGET_SIZE = 0.1
 local READY_COLOR = {255, 10, 10}
 local SET_COLOR = {255, 255, 10}
 local GO_COLOR = {10, 200, 10}
@@ -161,7 +161,7 @@ function factory.createLevelApi(kwargs)
 
     self.targetPositions = {}
     local ypos = kwargs.center[2] - kwargs.targetSize * 3
-    self.targetPositions[1] = {kwargs.center[1] - 1.5 * kwargs.targetSize, ypos}
+    self.targetPositions[1] = {kwargs.center[1] - 1.5 * kwargs.targetSize, 0.1}
     self.targetPositions[2] = {kwargs.center[1] - 0.5 * kwargs.targetSize, ypos}
     self.targetPositions[3] = {kwargs.center[1] + 0.5 * kwargs.targetSize, ypos}
     -- print("init target positions ", self.targetPositions)
@@ -216,13 +216,13 @@ function factory.createLevelApi(kwargs)
     local go_pos = self.targetPositions[idx]
     -- print('go position '.. tostring(go_pos[1]).. ','..tostring(go_pos[2]))
     -- Add "go" widget.
-    local go = tensor.ByteTensor(self.screenSize.height * kwargs.targetSize,
-        self.screenSize.width * kwargs.targetSize, 3):fill(kwargs.goColor)
+    local go = tensor.ByteTensor(self.screenSize.height * kwargs.targetSize*4,
+        self.screenSize.width * kwargs.targetSize*4, 3):fill(kwargs.goColor)
     self.pac:addWidget{
         name = 'go',
         image = go,
         pos = go_pos,
-        size = {kwargs.targetSize, kwargs.targetSize},
+        size = {kwargs.targetSize*4, kwargs.targetSize*4},
         mouseHoverCallback = self.goCallback,
     }
 
