@@ -576,11 +576,31 @@ function factory.createLevelApi(kwargs)
         'block_%d_episode_%d_trial_%d_%s',
         self.blockId, self.episodeId, self.trialId, message))
   end
+  
+  function env:write_file_numbers(filename, array)
+    local f = assert(io.open(filename, 'a'))
+    for _,v in ipairs(array) do
+      f:write(v[1], ',', v[2], '\n')
+      f:write(self.blockId, self.episodeId, self.trialId)
+      print(v[1], ',', v[2], '\n')
+    end
+    f:close()
+  end
+
+  function env:script_path()
+     local str = debug.getinfo(2, "S").source:sub(2)
+     return str:match("(.*/)") or "."
+  end
 
   function env:logEyes(v, h)
+    local filename = 
+    local f = assert(io.open(filename, 'a'))
     events:add('eyes', string.format(
         'block_%d_episode_%d_trial_%d_%f-%f',
         self.blockId, self.episodeId, self.trialId, v, h))
+    f:write(self.blockId, ', ' ,self.episodeId,', ', self.trialId, ', ', v,', ',h)
+    f:close()
+    print(self.blockId, ', ' ,self.episodeId,', ', self.trialId, ', ', v,', ',h)
   end
 
   return psychlab_factory.createLevelApi{
