@@ -83,6 +83,8 @@ function custom_observations.decorate(api)
     custom_observations.addSpec('TEAM.SCORE', 'Doubles', {2}, teamScore)
     custom_observations.addSpec('FRAMES_REMAINING_AT_60', 'Doubles', {1},
                                 framesRemainingAt60)
+    custom_observations.add_spec('DEBUG.POS.TRANS', 'Doubles', {3}, position)
+    custom_observations.add_spec('DEBUG.POS.ROT', 'Doubles', {3}, orientation)
     api.setInstruction('')
     debug_observations.extend(custom_observations)
     if params.enableCameraMovement == 'true' then
