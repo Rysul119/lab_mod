@@ -425,7 +425,7 @@ function factory.createLevelApi(kwargs)
 
     for playerId, inv in pairs(custom_observations.playerInventory) do
       local v, h, _ = unpack(inv:eyeAngles())
-      p = game:playerInfo().pos
+      p = tensor.DoubleTensor(game:playerInfo().pos)
       print('eyes at '.. tostring(p[1]).. ','..tostring(p[2])','..tostring(p[3]))
       -- self:logEyes(v, h)
       -- print('eyes at ', string.format('block_%d_episode_%d_trial_%d_%f-%f', self.blockId, self.episodeId, self.trialId, v, h))
