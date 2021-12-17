@@ -74,6 +74,14 @@ end
 3.  Language channel for, e.g. giving instructions to the agent (INSTR).
 4.  See debug_observations.lua for those.
 ]]
+local function position()
+  return tensor.DoubleTensor(game:playerInfo().pos)
+end
+
+local function orientation()
+  return tensor.DoubleTensor(game:playerInfo().angles)
+end
+
 function custom_observations.decorate(api)
   local init = api.init
   function api:init(params)
