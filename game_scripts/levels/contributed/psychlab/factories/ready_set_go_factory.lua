@@ -430,7 +430,10 @@ function factory.createLevelApi(kwargs)
       for key, value in pairs(pInfo) do
           if key == 'pos' then
             -- print('\t', key, value)
-            print('Player at '.. tostring(value[1]).. ', '..tostring(value[2])', '..tostring(value[3]))
+            -- print('Player at '.. tostring(value[1]).. ', '..tostring(value[2])', '..tostring(value[3]))
+            for _,v in ipairs(value) do
+              print(v[1], ', ', v[2], ', ', v[3]'\n')
+            end
           end
       end
       -- print('eyes at '.. tostring(p[1]).. ','..tostring(p[2])','..tostring(p[3]))
