@@ -428,7 +428,10 @@ function factory.createLevelApi(kwargs)
       -- p = tensor.DoubleTensor(game:playerInfo().pos)
       local pInfo = game:playerInfo()
       for key, value in pairs(pInfo) do
-          print('\t', key, value)
+          if key == 'pos' then
+            -- print('\t', key, value)
+            print('Player at '.. tostring(value[1]).. ', '..tostring(value[2])', '..tostring(value[3]))
+          end
       end
       -- print('eyes at '.. tostring(p[1]).. ','..tostring(p[2])','..tostring(p[3]))
       -- self:logEyes(v, h)
