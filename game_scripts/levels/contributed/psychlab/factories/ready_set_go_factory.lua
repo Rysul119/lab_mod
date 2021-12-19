@@ -425,10 +425,7 @@ function factory.createLevelApi(kwargs)
     -- checking the gameinfo
     local pInfo = game:playerInfo()
     for key, value in pairs(pInfo) do
-        if key = 'pos':
-          print(key)
-          print('\t', tensor.DoubleTensor(value)[1])
-        end
+       
     end
     
     for playerId, inv in pairs(custom_observations.playerInventory) do
