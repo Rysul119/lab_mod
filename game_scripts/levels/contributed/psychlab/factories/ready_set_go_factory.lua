@@ -422,20 +422,18 @@ function factory.createLevelApi(kwargs)
       end
       self._fixationBrokenFrames = self._fixationBrokenFrames + 1
     end
-
+    -- checking the gameinfo
+    local pInfo = game:playerInfo()
+    for key, value in pairs(pInfo) do
+        if key = 'pos':
+          print(key)
+          print('\t', tensor.DoubleTensor(value)[1])
+        end
+    end
+    
     for playerId, inv in pairs(custom_observations.playerInventory) do
       local v, h, _ = unpack(inv:eyeAngles())
       -- p = tensor.DoubleTensor(game:playerInfo().pos)
-      local pInfo = game:playerInfo()
-      for key, value in pairs(pInfo) do
-          if key == 'eyePos' then
-            -- print('\t', key, value)
-            -- print('Player at '.. tostring(value[1]).. ', '..tostring(value[2])', '..tostring(value[3]))
-            for _,v in ipairs(value) do
-              print(v[1], ', ', v[2], ', ', v[3]'\n')
-            end
-          end
-      end
       -- print('eyes at '.. tostring(p[1]).. ','..tostring(p[2])','..tostring(p[3]))
       -- self:logEyes(v, h)
       -- print('eyes at ', string.format('block_%d_episode_%d_trial_%d_%f-%f', self.blockId, self.episodeId, self.trialId, v, h))
