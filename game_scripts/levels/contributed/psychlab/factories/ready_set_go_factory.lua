@@ -427,17 +427,15 @@ function factory.createLevelApi(kwargs)
       local v, h, _ = unpack(inv:eyeAngles())
       -- p = tensor.DoubleTensor(game:playerInfo().pos)
       local pInfo = game:playerInfo()
-      for index, data in pairs(pInfo) do
-          print(index)
-          for key, value in pairs(data) do
-              print('\t', key, value)
-          end
+      for key, value in pairs(pInfo) do
+          print('\t', key, value)
       end
-      print('eyes at '.. tostring(p[1]).. ','..tostring(p[2])','..tostring(p[3]))
+      -- print('eyes at '.. tostring(p[1]).. ','..tostring(p[2])','..tostring(p[3]))
       -- self:logEyes(v, h)
       -- print('eyes at ', string.format('block_%d_episode_%d_trial_%d_%f-%f', self.blockId, self.episodeId, self.trialId, v, h))
       -- print('eyes at '.. tostring(v).. ','..tostring(h))
     end
+    
   end
 
   function env:goCallback(name, mousePos, hoverTime, userData)
