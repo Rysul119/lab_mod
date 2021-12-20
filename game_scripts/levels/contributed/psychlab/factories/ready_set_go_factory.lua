@@ -608,7 +608,7 @@ function factory.createLevelApi(kwargs)
   end
 
   function env:logEyes(xAngle, yAngle, zAngle)
-    local filename = "/usr/local/lib/python3.6/dist-packages/deepmind_lab/baselab/game_scripts/levels/contributed/psychlab/logs.txt"
+    local filename = "/usr/local/lib/python3.6/dist-packages/deepmind_lab/baselab/game_scripts/levels/contributed/psychlab/logs.csv"
     local f = assert(io.open(filename, 'a'))
     events:add('eyes', string.format(
         'block_%d_episode_%d_trial_%d_%f-%f',
