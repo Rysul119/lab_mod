@@ -613,9 +613,9 @@ function factory.createLevelApi(kwargs)
     events:add('eyes', string.format(
         'block_%d_episode_%d_trial_%d_%f-%f',
         self.blockId, self.episodeId, self.trialId, xAngle, yAngle))
-    f:write(self.blockId, ', ' ,self.episodeId,', ', self.trialId, ', ', xAngle,', ',yAngle, ', ',zAngle)
+    f:write(self.blockId, ', ' ,self.episodeId,', ', self.trialId, ', ', xAngle,', ',yAngle, ', ',zAngle, '\n')
     f:close()
-    print(self.blockId, ', ' ,self.episodeId,', ', self.trialId, ', ', xAngle,', ',yAngle, ', ',zAngle)
+    print(self.blockId, ', ' ,self.episodeId,', ', self.trialId, ', ', xAngle,', ',yAngle, ', ',zAngle, '\n')
   end
 
   return psychlab_factory.createLevelApi{
