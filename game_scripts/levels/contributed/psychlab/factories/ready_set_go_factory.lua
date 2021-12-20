@@ -162,9 +162,9 @@ function factory.createLevelApi(kwargs)
 
     self.targetPositions = {}
     local ypos = kwargs.center[2] - kwargs.targetSize * 3
-    self.targetPositions[1] = {kwargs.center[1] - 1.5 * kwargs.targetSize, 0.1}
+    self.targetPositions[1] = {kwargs.center[1] - 1.5 * kwargs.targetSize, ypos}
     self.targetPositions[2] = {kwargs.center[1] - 0.5 * kwargs.targetSize, ypos}
-    self.targetPositions[3] = {kwargs.center[1] + 0.5 * kwargs.targetSize, ypos}
+    self.targetPositions[3] = {kwargs.center[1] + 0.5 * kwargs.targetSize, 0.1}
     -- print("init target positions ", self.targetPositions)
     local maxInterval = kwargs.rsgIntervals[#kwargs.rsgIntervals]
     local maxProbe = kwargs.probeIntervals[#kwargs.probeIntervals]
@@ -424,6 +424,7 @@ function factory.createLevelApi(kwargs)
     end
     
     -- checking the gameinfo
+    --[[
     local pInfo = game:playerInfo()
     for key, value in pairs(pInfo) do
       if key == 'pos' then
@@ -433,12 +434,12 @@ function factory.createLevelApi(kwargs)
           print('\t', key,': ' ,'x: ', value[1], ', y: ', value[2], ', z: ', value[3])
       end
     end
+    ]]
     
     for playerId, inv in pairs(custom_observations.playerInventory) do
-      local v, h, _ = unpack(inv:eyeAngles())
-      -- p = tensor.DoubleTensor(game:playerInfo().pos)
+      local xAngle, yAngle, zAngle = unpack(inv:eyeAngles())
       -- print('eyes at '.. tostring(p[1]).. ','..tostring(p[2])','..tostring(p[3]))
-      -- self:logEyes(v, h)
+      self:logEyes(xAngle, yAngle, zAngle)
       -- print('eyes at ', string.format('block_%d_episode_%d_trial_%d_%f-%f', self.blockId, self.episodeId, self.trialId, v, h))
       -- print('eyes at '.. tostring(v).. ','..tostring(h))
     end
@@ -606,15 +607,15 @@ function factory.createLevelApi(kwargs)
      return str:match("(.*/)") or "."
   end
 
-  function env:logEyes(v, h)
+  function env:logEyes(xAngle, yAngle, zAngle)
     local filename = "/usr/local/lib/python3.6/dist-packages/deepmind_lab/baselab/game_scripts/levels/contributed/psychlab/logs.txt"
     local f = assert(io.open(filename, 'a'))
     events:add('eyes', string.format(
         'block_%d_episode_%d_trial_%d_%f-%f',
         self.blockId, self.episodeId, self.trialId, v, h))
-    f:write(self.blockId, ', ' ,self.episodeId,', ', self.trialId, ', ', v,', ',h)
+    f:write(self.blockId, ', ' ,self.episodeId,', ', self.trialId, ', ', xAngle,', ',yAngle, ', ',zAngle)
     f:close()
-    print(self.blockId, ', ' ,self.episodeId,', ', self.trialId, ', ', v,', ',h)
+    print(self.blockId, ', ' ,self.episodeId,', ', self.trialId, ', ', xAngle,', ',yAngle, ', ',zAngle)
   end
 
   return psychlab_factory.createLevelApi{
