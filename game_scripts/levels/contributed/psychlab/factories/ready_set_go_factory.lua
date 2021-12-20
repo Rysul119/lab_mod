@@ -437,9 +437,9 @@ function factory.createLevelApi(kwargs)
     ]]
     
     for playerId, inv in pairs(custom_observations.playerInventory) do
-      local xAngle, yAngle, _ = unpack(inv:eyeAngles())
+      local xAngle, yAngle, zAngle = unpack(inv:eyeAngles())
       -- print('eyes at '.. tostring(p[1]).. ','..tostring(p[2])','..tostring(p[3]))
-      self:logEyes(xAngle, yAngle, 0)
+      self:logEyes(xAngle, yAngle, zAngle)
       -- print('eyes at ', string.format('block_%d_episode_%d_trial_%d_%f-%f', self.blockId, self.episodeId, self.trialId, v, h))
       -- print('eyes at '.. tostring(v).. ','..tostring(h))
     end
@@ -607,7 +607,7 @@ function factory.createLevelApi(kwargs)
      return str:match("(.*/)") or "."
   end
 
-  function env:logEyes(xAngle, xAngle, zAngle)
+  function env:logEyes(xAngle, yAngle, zAngle)
     local filename = "/usr/local/lib/python3.6/dist-packages/deepmind_lab/baselab/game_scripts/levels/contributed/psychlab/logs.txt"
     local f = assert(io.open(filename, 'a'))
     events:add('eyes', string.format(
