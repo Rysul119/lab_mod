@@ -427,7 +427,10 @@ function factory.createLevelApi(kwargs)
     local pInfo = game:playerInfo()
     for key, value in pairs(pInfo) do
       if key == 'pos' then
-          print('\t', key, value[1])
+          print('\t', key,': ' ,'x: ', value[1], ', y: ', value[2], ', z: ', value[3])
+      end
+      if key == 'eyePos' then
+          print('\t', key,': ' ,'x: ', value[1], ', y: ', value[2], ', z: ', value[3])
       end
     end
     
