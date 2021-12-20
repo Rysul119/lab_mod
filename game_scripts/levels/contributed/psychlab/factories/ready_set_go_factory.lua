@@ -607,12 +607,12 @@ function factory.createLevelApi(kwargs)
      return str:match("(.*/)") or "."
   end
 
-  function env:logEyes(xAngle, yAngle, zAngle)
+  function env:logEyes(xAngle, xAngle, zAngle)
     local filename = "/usr/local/lib/python3.6/dist-packages/deepmind_lab/baselab/game_scripts/levels/contributed/psychlab/logs.txt"
     local f = assert(io.open(filename, 'a'))
     events:add('eyes', string.format(
         'block_%d_episode_%d_trial_%d_%f-%f',
-        self.blockId, self.episodeId, self.trialId, v, h))
+        self.blockId, self.episodeId, self.trialId, xAngle, yAngle))
     f:write(self.blockId, ', ' ,self.episodeId,', ', self.trialId, ', ', xAngle,', ',yAngle, ', ',zAngle)
     f:close()
     print(self.blockId, ', ' ,self.episodeId,', ', self.trialId, ', ', xAngle,', ',yAngle, ', ',zAngle)
