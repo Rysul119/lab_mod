@@ -422,12 +422,13 @@ function factory.createLevelApi(kwargs)
       end
       self._fixationBrokenFrames = self._fixationBrokenFrames + 1
     end
+    
     -- checking the gameinfo
     local pInfo = game:playerInfo()
     for key, value in pairs(pInfo) do
-       if key == 'pos' then
-         print('\t', key, value)
-       then
+      if key == 'pos' then
+          print('\t', key, value[1])
+      end
     end
     
     for playerId, inv in pairs(custom_observations.playerInventory) do
