@@ -608,9 +608,9 @@ function factory.createLevelApi(kwargs)
   end
 
   function env:logEyes(xAngle, yAngle, zAngle)
-    local dir  = os.getenv("PWD")
-    print(dir)
-    local filename = "/home/logs.csv"
+    --local dir  = os.getenv("PWD")
+    --print(dir)
+    local filename = "logs.csv"
     local f = assert(io.open(filename, 'a'))
     events:add('eyes', string.format(
         'block_%d_episode_%d_trial_%d_%f-%f',
