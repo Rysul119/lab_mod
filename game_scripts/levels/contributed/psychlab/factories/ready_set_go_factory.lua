@@ -439,7 +439,9 @@ function factory.createLevelApi(kwargs)
     for playerId, inv in pairs(custom_observations.playerInventory) do
       local xAngle, yAngle, zAngle = unpack(inv:eyeAngles())
       -- print('eyes at '.. tostring(p[1]).. ','..tostring(p[2])','..tostring(p[3]))
-      self:logEyes(xAngle, yAngle, zAngle)
+      if (self.episodeId > 1) then 
+        self:logEyes(xAngle, yAngle, zAngle)
+      end
       -- print('eyes at ', string.format('block_%d_episode_%d_trial_%d_%f-%f', self.blockId, self.episodeId, self.trialId, v, h))
       -- print('eyes at '.. tostring(v).. ','..tostring(h))
     end
