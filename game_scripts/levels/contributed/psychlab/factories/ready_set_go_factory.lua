@@ -374,7 +374,7 @@ function factory.createLevelApi(kwargs)
     self.pac:resetSteps()
 
     local trialData = helpers.tostring(self.currentTrial)
-    events:add('task_events', trialData, kwargs.schema)
+    events:add('trial_data', trialData, kwargs.schema)
 
     psychlab_helpers.finishTrialCommon(self, delay, kwargs.fixationSize)
   end
