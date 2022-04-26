@@ -612,14 +612,14 @@ function factory.createLevelApi(kwargs)
   function env:logEyes(xAngle, yAngle, zAngle)
     --local dir  = os.getenv("PWD")
     --print(dir)
-    local filename = "logs.csv"
-    local f = assert(io.open(filename, 'a'))
+    --local filename = "logs.csv"
+    --local f = assert(io.open(filename, 'a'))
     events:add('eyes', string.format(
         'block_%d_episode_%d_trial_%d_%f-%f',
         self.blockId, self.episodeId, self.trialId, xAngle, yAngle))
-    f:write(self.blockId, ', ' ,self.episodeId,', ', self.trialId, ', ', xAngle,', ',yAngle, ', ',zAngle, '\n')
-    f:close()
-    print(self.blockId, ', ' ,self.episodeId,', ', self.trialId, ', ', xAngle,', ',yAngle, ', ',zAngle, '\n')
+    -- f:write(self.blockId, ', ' ,self.episodeId,', ', self.trialId, ', ', xAngle,', ',yAngle, ', ',zAngle, '\n')
+    -- f:close()
+    -- print(self.blockId, ', ' ,self.episodeId,', ', self.trialId, ', ', xAngle,', ',yAngle, ', ',zAngle, '\n')
   end
 
   return psychlab_factory.createLevelApi{
